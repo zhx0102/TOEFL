@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 500px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border: 2px solid hotpink;
+            text-align: center;
+            margin: auto;
+        }
+
+        h2 {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <h2>Start</h2>
+        <div class="textBox">点击Start开始点名</div>
+    </div>
+    <script>
+        const btn = document.querySelector("h2");
+        const textBox = document.querySelector(".textBox");
+        let flag = false;
+        const nameArr = ['马为圣', '徐修亮', '陈宗汉', '郑惠娴', '王琨', '陈义伟'];
+        btn.onclick = function () {
+            if (flag) {
+                btn.innerHTML = "Start";
+                flag = false;
+                clearInterval(this.timer);
+            } else {
+                btn.innerHTML = "End";
+                flag = true;
+                let nameNum;
+                const len=nameArr.length-1;
+                this.timer = setInterval(() => {
+                    nameNum = Math.round(Math.random() * len);
+                    textBox.innerHTML = nameArr[nameNum];
+                },50);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

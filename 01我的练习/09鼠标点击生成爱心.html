@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            background-color: black;
+        }
+
+        .text {
+            position: absolute;
+            z-index: 9999999;
+            font-weight: bold;
+            user-select: none;
+        }
+
+        @keyframes remove {
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let body = document.body;
+        //生成随机文本
+        let content = ['❤我爱石头', '❤石头石头', '❤我喜欢你', '❤石头最好了', '❤我爱你~'];
+
+        function color() {
+            let green = parseInt(Math.random() * 255);
+            let red = parseInt(Math.random() * 255);
+            let blue = parseInt(Math.random() * 255);
+            let rgb = `rgb(${green},${red},${blue})`;
+            return rgb;
+        }
+
+        body.onclick = function (e) {
+            const mouse = {
+                x : e.pageX, //当前坐标
+                y : e.pageY
+            }
+            let randContent = Math.ceil(Math.random() * content.length);
+            let text=new Text(mouse.x,mouse.y,randContent);
+            let span =document.createElement('span');
+            span.style.color=color();
+            text.create(span);
+            setTimeout(()=>{
+                text.out(span);
+            },1900)
+        }
+        function Text(x,y,rand){
+            this.x=x;
+            this.y=y;
+            this.rand=rand;
+        }
+        Text.prototype.create=function(_this){
+            let body=document.body;
+            _this.innerHTML=content[this.rand-1];
+            _this.className='text';
+            _this.style.left=this.x-50+'px';
+            _this.style.top=this.y-20+'px';
+            _this.style.animation='remove 2s';
+            body.appendChild(_this);
+            let i=0;
+            setInterval(()=>{
+                _this.style.top=this.y-20-i+'px';
+                i++
+            },10);
+
+        }
+        Text.prototype.out=function(_this){
+            _this.remove();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 50px;
+            height: 600px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            background: repeating-linear-gradient(45deg,#fff 0 5%,#f00 0 10%,#fff 0 10%,#00f 0 20%);
+            animation: up 5s infinite linear;
+             background-size: 300px 200px;
+        }
+        @keyframes up {
+            from{
+                background-position: 0 600px;
+            }
+            to{
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    
+</body>
+</html>
