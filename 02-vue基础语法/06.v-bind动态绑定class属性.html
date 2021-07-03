@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .title {
+            color: hotpink;
+        }
+
+        .line {
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2 :class="getClass()">{{message}}</h2>
+        <button v-on:click="changeStyle">点我呀</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "我爱你呀石头~",
+                isTitle: true,
+                isLine: true
+            },
+            methods: {
+                changeStyle: function () {
+                    this.isTitle = !this.isTitle;
+                },
+                getClass: function () {
+                    return {
+                        title: this.isTitle,
+                        line: this.isLine
+                    };
+                }
+            }
+
+        })
+    </script>
+
+    <!-- <div id="app">
+        <h2 :class="active">{{message}}</h2>
+    </div> -->
+    <!-- <div id="app"> -->
+    <!-- <h2 :class="{key1:value1,key2:value2}">{{message}}</h2> -->
+    <!-- <h2 :class="{类名1:true,类名2:true}">{{message}}</h2> -->
+    <!-- <h2 :class="{title:isActive,line:isLine}">{{message}}</h2>
+        <button v-on:click="changeColor">点我</button>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 message:"你好哇，李银河",
+                 isActive:true,
+                 isLine:true
+             }
+             ,methods:{
+                 changeColor:function(){
+                     this.isActive=!this.isActive;
+                 }
+             }
+         })
+     </script> -->
+</body>
+
+</html>
