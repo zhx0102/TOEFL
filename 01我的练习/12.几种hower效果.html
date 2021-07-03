@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: #031628;
+        }
+        button{
+            width: 130px;
+            height: 45px;
+            text-align: center;
+            margin-left: 300px;
+            margin-top: 200px;
+        }
+        .btnBlue{
+            border: 2px solid #4cc9f0;
+            color: #4cc9f0;;
+        }
+        .btnRed{
+            border: 2px solid #f038ff;
+            color: #f038ff;;
+        }
+        .btnYellow{
+            border: 2px solid #b9e769;
+            color: #b9e769;;
+        }
+        .HoverStyle{
+            box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+            background-color:#4cc9f0 ;
+            /* outline:none; */
+            border:none;
+            color: white;
+        }
+        .HoverStyle2{
+            box-shadow: 10px 10px 99px 6px #f038ff;
+            background-color:#f038ff ;
+            /* outline:none; */
+            border:none;
+            color: white;
+        }
+        .HoverStyle3{
+            box-shadow: 10px 10px 99px 6px #b9e769;
+            background-color:#b9e769 ;
+            /* outline:none; */
+            border:none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button class='btnBlue'>HOVER ME</button>
+    <button class='btnRed'>HOVER ME</button>
+    <button class='btnYellow'>HOVER ME</button>
+    <script>
+        const btns=document.querySelectorAll("button");
+        btns[0].onmousemove=function(){
+            this.className='HoverStyle';
+        }
+        btns[0].onmouseout=function(){
+            this.className='btnBlue';
+        }
+        btns[1].onmousemove=function(){
+            this.className='HoverStyle2';
+        }
+        btns[1].onmouseout=function(){
+            this.className='btnRed';
+        }
+        btns[2].onmousemove=function(){
+            this.className='HoverStyle3';
+        }
+        btns[2].onmouseout=function(){
+            this.className='btnYellow';
+        }
+    </script>
+</body>
+</html>
