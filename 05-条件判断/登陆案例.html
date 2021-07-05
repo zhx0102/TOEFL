@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{title}}
+        <input type="text" :placeholder="text" :key="time">
+        <button @click="checkLoginType()">切换方式</button>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 flag:false,
+                 title:"用户名：",
+                 text:"请输入用户名",
+                 time:''
+             },
+             methods:{
+                 checkLoginType(){
+                    if(!this.flag){
+                        this.title="邮箱登陆：";
+                        this.text="请输入邮箱";
+                    }else{
+                        this.title="用户名：";
+                        this.text="请输入用户名";
+                    }
+                    this.flag=!this.flag;
+                    setTimeout(()=>{
+                        this.time=new Date().getTime()
+                     },100)
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
