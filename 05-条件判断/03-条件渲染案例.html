@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{title}}
+        <input type="text" :placeholder="text">
+        <button @click="checkType">切换类型</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: true,
+                title: "用户登录：",
+                text:"请输入用户名"
+            },
+            methods: {
+                checkType() {
+                    this.message = !this.message;
+                    if (this.message == false) {
+                        this.title = "邮箱登录：";
+                        this.text="请输入邮箱地址";
+                    } else {
+                        this.title = "用户登录：";
+                        this.text="请输入用户名";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

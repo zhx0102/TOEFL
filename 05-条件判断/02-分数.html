@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{result}}</h1>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 score:60
+             },computed:{
+                 result(){
+                     let showMessage='';
+                     if(this.score<60){
+                         showMessage="你不及格";
+                     }else if(this.score<70 && this.score>59){
+                         showMessage="你及格了，真棒"
+                     }else{
+                        showMessage="你很优秀"
+                     }
+                     return showMessage;
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

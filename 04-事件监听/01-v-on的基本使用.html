@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>计数器：{{count}}</h1>
+        <button @click="add">+</button>
+        <button @click="sub">-</button>
+        <button @click="get($event)">点我</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                count: 0
+            },
+            methods: {
+                add() {
+                    this.count++;
+                },
+                sub() {
+                    this.count--;
+                },
+                get(event){
+                    console.log(event);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
