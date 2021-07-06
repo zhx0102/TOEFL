@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="搜索指定用户" v-model="searchName">
+        <ul>
+            <li v-for="(item,index) in search()":key="item.id">
+                {{ index + 1 }} -- {{ item.name }}--{{ item.age}}
+            </li>
+        </ul>
+        <button @click="sortType=1">年龄升序</button>
+        <button @click="sortType=2">年龄降序</button>
+        <button @click="sortType=0">原本顺序</button>
+    </div>
+     <script>
+          const app =new Vue({
+              el:"#app",
+              data:{
+                searchName:'',
+                sortType:0,//0为原本顺序  1-升序  2-降序
+                persons: [
+                    {id: 1, name: 'Jack', age: 12},
+                    {id: 3, name: 'Bob', age: 11},
+                    {id: 5, name: 'Cat', age: 13},
+                    {id: 6, name: 'Jose', age: 10},
+                    {id: 8, name: 'Jarry', age: 16},
+                    {id: 9, name: 'Tom', age: 18},
+                    {id: 7, name: 'Tony', age: 17},
+                ]
+              },
+              methods:{
+                search(){
+                    const {persons,searchName,sortType}=this;
+                    const arr= persons.filter(p=>{
+                        return p.name.includes(searchName);
+                    })
+                    if(sortType!=0){
+                        arr.sort((item1,item2)=>{
+                            if(sortType==1){
+                                return item1.age-item2.age;
+                            }else{
+                                return item2.age-item1.age;
+                            }
+                        })
+                    }
+                    return arr;
+                }
+              }
+          })
+     </script>
+</body>
+</html>

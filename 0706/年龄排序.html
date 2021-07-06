@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="搜索指定用户" v-mode="seoName">
+        <ul>
+            <li v-for="(item,index) in filterPersons":key="item.id">
+                {{item.id}}--{{item.name}}--{{item.age}}
+            </li>
+        </ul>
+        <button>年龄升序</button>
+        <button>年龄降序</button>
+        <button>原本顺序</button>
+    </div>
+     <script>
+         const app=new Vue({
+            el:"#app",
+            data:{
+                person:[
+                    {id:0,name:"Tom",age:23},
+                    {id:1,name:"Lili",age:3},
+                    {id:2,name:"Bob",age:88},
+                    {id:3,name:"Jerry",age:25},
+                    {id:4,name:"Toy",age:31},
+                    {id:5,name:"Laoliu",age:78},
+                ],
+                seoName:""
+            },
+            computed:{
+                filterPersons(){
+                    const {seoName,person}=this;
+                    const arr = person.filter(p=>{
+                        return p.name.includes(seoName);
+                    })
+                    return arr;
+                }
+            }
+     })
+     </script>
+</body>
+</html>

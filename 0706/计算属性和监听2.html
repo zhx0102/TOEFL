@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        姓：<input type="text" v-model="firstName"><br>
+        名：<input type="text" v-model="lastName"><br>
+        姓名1（单向）：<input type="text" v-model="fullName"><br>
+        姓名2（单向）：<input type="text" v-model="fullName3"><br>
+        姓名3（双向）：<input type="text" v-model="fullName2"><br>
+        <h3>详细信息为：我的姓名是{{mes}}，我的年龄是........</h3>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 firstName:"a",
+                 lastName:"b",
+                 fullName3:"",
+                 mes:""
+             },
+             watch:{
+                 firstName:{
+                     handler(value){
+                         this.fullName3=this.firstName+" "+this.lastName;
+                         setTimeout(()=>{
+                            this.mes=this.firstName+" "+this.lastName;
+                         },1000)
+                     },
+                     immediate: true
+                 }
+             },
+             computed:{
+                 fullName(){
+                     return this.firstName+" "+this.lastName;
+                 },
+                 fullName2:{
+                     get(){
+                        return this.firstName+" "+this.lastName;
+                     },
+                     set(value){
+                         const names=value.split(" ");
+                         this.firstName=names[0];
+                         this.lastName=names[1];
+                     }
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

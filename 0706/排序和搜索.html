@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="搜索指定用户" v-model="searchName" >
+        <ul>
+            <li v-for="(item,index) in filterPerson()":key="item.id">
+                {{item.id}}--{{item.name}}--{{item.age}}
+                ----<button @click="deleteP(index)">删除</button>
+                ----<button @click="updateP(index,newP)">更新</button>
+            </li>
+        </ul>
+        <button @click="sortType=1">年龄升序</button>
+        <button @click="sortType=2">年龄降序</button>
+        <button @click="sortType=0">原本顺序</button>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 searchName:"",
+                 newP:{id:99,name:"石悦豪",age:22},
+                 isShow:true,
+                 sortType:0,//0-原本顺序,1-升序,2-降序
+                 persons:[
+                     {id:0,name:"Bobo",age:12},
+                     {id:1,name:"Lily",age:22},
+                     {id:2,name:"Jerry",age:15},
+                     {id:3,name:"Toy",age:17},
+                     {id:4,name:"Yeah",age:34},
+                     {id:5,name:"Tom",age:36},
+                     {id:6,name:"Cidy",age:40},
+                     {id:7,name:"laoliu",age:55},
+                     {id:8,name:"老许",age:21}
+                 ]
+             },
+             methods:{
+                 filterPerson(){
+                     const {persons,searchName,sortType} = this;
+                     const arr = persons.filter(p=>{
+                         return p.name.includes(searchName);
+                     })
+                     if(sortType!=0){
+                         arr.sort((item1,item2)=>{
+                             if(sortType==1){
+                                 return item1.age-item2.age;
+                             }else{
+                                 return item2.age-item1.age;
+                             }
+                         })
+                     }
+                     return arr;
+                 },
+                 deleteP(index){
+                     this.persons.splice(index,1)
+                 },
+                 updateP(index,newP){
+                     this.persons.splice(index,1,newP)
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
