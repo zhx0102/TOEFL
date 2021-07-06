@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in star">{{item}}</li>
+        </ul>
+        <button @click="addStar()">+</button>
+        <button @click="subStar()">-</button>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 star:['周杰伦','林俊杰','易烊千玺','张国荣']
+             },
+             methods:{
+                 addStar(){
+                    //  1.this.star.push('喜羊羊');
+                    //  2.this.star.unshift('灰太狼');
+                 },
+                 subStar(){
+                    // 3.this.star.pop();
+                    // 4.this.star.shift();
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

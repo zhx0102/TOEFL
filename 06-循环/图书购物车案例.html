@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+<style>
+    table{
+        border: 1px solid #333;
+    }
+    table tr{
+        text-align: center;
+    }
+    table tr th{
+        padding-left: 30px;
+        padding-right: 60px;
+        border-bottom: 1px solid #333;
+        border-left:1px solid #333 ;
+        background-color: #eee;
+    }
+    table tr th:nth-of-type(1){
+        border-left:none;
+    }
+    table tr td{
+        padding-left: 30px;
+        padding-right: 60px;
+        border-bottom: 1px solid #333;
+        border-left:1px solid #333 ;
+        padding-top: 5px;
+    }
+    table tr td:nth-of-type(1){
+        border-left:none;
+    }
+    table tr:nth-last-of-type(1) td{
+        border-bottom: none;
+        /* background-color: hotpink; */
+    }
+</style>
+</head>
+<body>
+    <div id="app">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th></th>
+                <th>书籍名称</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td v-for="(value,key) in bookMessage[0]">{{value}}</td>
+                <td>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>移除</button>
+                </td>
+            </tr>
+            <tr>
+                <td v-for="(value,key) in bookMessage[1]">{{value}}</td>
+                <td>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>移除</button>
+                </td>
+            </tr>
+            <tr>
+                <td v-for="(value,key) in bookMessage[2]">{{value}}</td>
+                <td>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>移除</button>
+                </td>
+            </tr>
+            <tr>
+                <td v-for="(value,key) in bookMessage[3]">{{value}}</td>
+                <td>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>移除</button>
+                </td>
+            </tr>
+        </table>
+        <h3>总价为：</h3>
+    </div>
+     <script>
+         const app=new Vue({
+             el:"#app",
+             data:{
+                 bookMessage:[{
+                     id:1,
+                     name:"《算法导论》",
+                     date:"2006-9",
+                     price:85.00,
+                     number:1
+                 },{
+                     id:2,
+                     name:"《UNIX编程艺术》",
+                     date:"2006-2",
+                     price:59.00,
+                     number:1
+                 },
+                 {
+                     id:3,
+                     name:"《编程珠玑》",
+                     date:"2008-10",
+                     price:39.00,
+                     number:1
+                 },
+                 {
+                     id:4,
+                     name:"代码大全",
+                     date:"2006-3",
+                     price:128.00,
+                     number:1
+                 }
+                ]
+             }
+         })
+     </script>
+</body>
+</html>
