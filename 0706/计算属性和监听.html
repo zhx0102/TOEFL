@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        姓：<input type="text" v-model="firstName"><br>
+        名：<input type="text" v-model="lastName"><br>
+        姓名1（单向）：<input type="text" v-model="fullName"><br>
+        姓名2（单向）：<input type="text" v-model="fullName2"><br>
+        姓名3（双向）：<input type="text" v-model="fullName3">
+        <br>
+        <h3>详细信息为：{{info}}</h3>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "a",
+                lastName: "b",
+                fullName2: "a-b",
+                info: ""
+            },
+            watch: {
+                firstName: {
+                    handler(value) {
+                        this.fullName2 = value + "-" + this.lastName;
+                        setTimeout(() => {
+                            const info = `我的姓名是：${this.firstName}-${this.lastName},我的年龄为......`;
+                            this.info = info;
+                        }, 1000);
+                    },
+                    immediate: true
+                }
+            },
+            computed: {
+                fullName() {
+                    return this.firstName + "-" + this.lastName;
+                },
+                fullName3: {
+                    get() {
+                        return this.firstName + "-" + this.lastName;
+                    },
+                    set(value) {
+                        let names = value.split("-");
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                    }
+                }
+            }
+        })
+        app.$watch("lastName", function (value) {
+            this.fullName2 = this.firstName + "-" + value;
+            setTimeout(() => {
+                const info = `我的姓名是：${this.firstName}-${this.lastName},我的年龄为......`;
+                this.info = info;
+
+            }, 1000);
+
+        })
+
+
+        //  const app=new Vue({
+        //      el:"#app",
+        //      data:{
+        //          firstName:"",
+        //          lastName:"",
+        //          fullName2:""
+        //      },
+        //      watch:{
+        //          firstName(value){
+        //             //更新fullName2
+        //             this.fullName2=value+"-"+this.lastName;
+        //          }
+        //      },
+        //      computed:{
+        //          fullName(){
+        //              return this.firstName+"-"+this.lastName;
+        //          },
+        //          fullName3:{
+        //              get(){
+        //                 return this.firstName+"-"+this.lastName;
+        //              },
+        //              set(value){
+        //                  const names=value.split("-");
+        //                  this.firstName=names[0];
+        //                  this.lastName=names[1];
+        //              }
+        //          }
+        //      }
+        //  })
+
+        //  //监听lastName变化
+        //  app.$watch("lastName",function(value){
+        //      this.fullName2=this.firstName+"-"+value;
+        //  })
+    </script>
+</body>
+
+</html>

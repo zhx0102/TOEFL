@@ -6,25 +6,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script src="../js/vue.js"></script>
+<style>
+    .red{
+        color:hotpink;
+        font-weight: bold;
+    }
+    .blue{
+        color: steelblue;
+        font-size: 30px;
+    }
+</style>
 </head>
 <body>
     <div id="app">
-        <input  v-model="message" type="text">
-        <p>{{message}}</p>
-        <a :href="url">百度</a>
-        <button @click="handleClick">点我</button>
+        <h3 :class="{red:isRed,blue:isBlue}">哈哈哈哈哈哈哈哈哈哈哈哈哈哈</h3>
+        <button @click="checkColor()">变色</button>
     </div>
      <script>
          const app=new Vue({
              el:"#app",
              data:{
-                 message:"atguigu",
-                 url:"http://www.baidu.com"
+                isRed:true,
+                isBlue:false
              },
              methods:{
-                handleClick(){
-                    console.log(111111111);
-                }
+                 checkColor(){
+                     this.isBlue=!this.isBlue;
+                 }
              }
          })
      </script>
