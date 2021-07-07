@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.5/dayjs.min.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <h3>{{time}}</h3>
+         <h3>{{time | filterTime("YYYY-MM-DD")}}</h3>
+         <h3>{{time | filterTime("HH:mm:ss")}}</h3>
+     </div>
+     <script>
+         Vue.filter("filterTime",function(value,forTimer){
+            //  return dayjs(value).format(forTimer || "YYYY-MM-DD HH:mm:ss")
+            return moment(value).format(forTimer || "YYYY-MM-DD HH:mm:ss")
+         })
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 time:new Date()
+             }
+         })
+     </script>
+</body>
+</html>

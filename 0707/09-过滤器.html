@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.5/dayjs.min.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <h1>显示格式化的日期时间</h1>
+         <h3>{{currentTime | filterTime}}</h3>
+         <h2>{{currentTime | filterTime("YYYY-MM-DD")}}</h2>
+         <h2>{{currentTime | filterTime("HH:mm:ss")}}</h2>
+     </div>
+     <script>
+         Vue.filter("filterTime",function(value,formatStr){
+            //  return dayjs(value).format(formatStr || 'YYYY-MM-DD HH:mm:ss')
+            return moment(value).format(formatStr || 'YYYY-MM-DD HH:mm:ss')
+         })
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 currentTime:new Date()
+             },
+             methods:{
+
+             }
+         })
+     </script>
+</body>
+</html>

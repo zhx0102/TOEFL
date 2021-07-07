@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <h3 v-upper-text="msg"></h3>
+        <h3 v-lower-text="msg"></h3>
+        <h3></h3>
+    </div>
+    <script>
+        //注册全局指令
+        Vue.directive('upper-text', function (el, binding) {
+            el.innerHTML = binding.value.toUpperCase()
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: "I Lover You"
+            },
+
+            directives: {
+                'lower-text': {
+                    bind(el, binding) {
+                        el.innerHTML = binding.value.toLowerCase();
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
