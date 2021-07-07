@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <h1>a.b={{a.b}}</h1>
+         <h1>a.c={{a.c}}</h1>
+         <button @click="add()">添加</button>
+         <button @click="deleteC()">删除</button>
+     </div>
+     <script>
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 a:{b:12345}
+             },
+             methods:{
+                 add(){
+                     if(!this.a.hasOwnProperty("c")){
+                         // hasOwnProperty 看a的身上有没有c属性
+                         this.$set(this.a,"c","678910");
+                     }else{
+                         this.a.c=this.a.c;
+                     }
+                 },
+                 deleteC(){
+                     if(this.a.hasOwnProperty("c")){
+                         this.$delete(this.a,"c");
+                     }
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
