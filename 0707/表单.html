@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <form action="/sss" @submit.prevent="submit()">
+            用户名：<input type="text" v-model="user.userName"><br>
+            密码：<input type="password" v-model="user.password"><br>
+            性别：<input type="radio" v-model="user.sex" value="女">女
+            <input type="radio" v-model="user.sex" value="男">男<br>
+            爱好：
+            <input type="checkbox" v-model="user.hobby" value="eat">吃饭
+            <input type="checkbox" v-model="user.hobby" value="sleep">睡觉
+            <input type="checkbox" v-model="user.hobby" value="doudou">打豆豆
+            <input type="checkbox" v-model="user.hobby" value="code">写代码
+            <br>
+            城市：
+            <select v-model="user.cityId">
+                <option value="">未选择</option>
+                <option value="" v-for="(item,index) in citys":key="item.id">{{item.name}}</option>
+            </select>
+            <br>
+            介绍：
+            <textarea rows="10" v-model="user.info"></textarea><br>
+            <br>
+            <input type="submit" value="注册" @click="getData()">
+        </form>
+     </div>
+     <script> 
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 user:{
+                    userName:"",
+                    password:"",
+                    sex:"女",
+                    hobby:["eat"],
+                    cityId:1,
+                    info:""
+                 },
+                 citys:[
+                     {id:1,name:"深圳"},
+                     {id:2,name:"上海"},
+                     {id:3,name:"武汉"},
+                     {id:4,name:"北京"},
+                    ]
+             },
+             methods:{
+                 submit(){
+                     console.log("提交成功！");
+                 },
+                 getData(){
+                     console.log(this.user)
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

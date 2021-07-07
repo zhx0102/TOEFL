@@ -9,24 +9,25 @@
 </head>
 <body>
      <div id='app'>
-         <h1>1.事件event</h1>
-         <h1>{{message}}</h1>
-         <button @click="test1('atguigu',$event)">点我</button>
-         <h2>2.键盘修饰符</h2>
-         <input type="text" @keyup.enter="test2()">
+         <h2 v-upper-text="msg"></h2>
+         <h2 v-lower-text="msg"></h2>
      </div>
      <script>
+         //全局
+         Vue.directive('upper-text',(el,binding)=>{
+             el.innerHTML=binding.value.toUpperCase();
+         })
          const app = new Vue({
              el:'#app',
              data:{
-                 message:"hello world"
+                 msg:"NBA i love you"
              },
-             methods:{
-                 test1(mes,event){
-                    console.log(mes,event);
-                 },
-                 test2(){
-                     console.log('11111');
+             //局部
+             directives:{
+                 'lower-text':{
+                     bind(el,binding){
+                         el.innerHTML=binding.value.toLowerCase();
+                     }
                  }
              }
          })
