@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <h1>1.绑定监听</h1>
+         <button @click="test1">Test1111</button>
+         <button @click="test2('atguigu')">Test2222</button>
+         <button @click="test3('石悦豪',$event)">Test3333</button><br>
+         <a href="http://www.baidu.com" @click.prevent="test4()">去学习</a><br>
+         <h3>阻止事件冒泡</h3>
+         <div @click="test5()" style="background-color: hotpink; width: 200px; height: 200px;">
+            <div @click.stop="test6()" style="background-color: skyblue; width: 100px; height: 100px;"></div>
+        </div>
+        <button @click.once="test7()">只响应一次</button>
+        <h1>3.按键修饰符</h1>
+        <input type="text" @keyup.enter="test8()"><br>
+     </div>
+     <script>
+         const app = new Vue({
+             el:'#app',
+             data:{},
+             methods:{
+                 test1(event){
+                     alert(event.target.innerHTML)
+                 },
+                 test2(value){
+                    alert(value)
+                 },
+                 test3(value,event){
+                     alert(value);
+                     console.log(event.target.innerHTML);
+                 },
+                 test4(){
+                     alert("点击成功！")
+                 },
+                 test5(){
+                     console.log("大盒子被点击了");
+                 },
+                 test6(){
+                     console.log("小盒子被点击了");
+                 },
+                 test7(){
+                     alert("点击啦！");
+                 },
+                 test8(event){
+                     alert('hhhhhhhhhhhhh')
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <button @click="$destroy()">destory vue</button>
+        <p v-show="isShow">住在山里真不错~~</p>
+        <p ref="title">xxxxxxxxxxx</p>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isShow: true
+            },
+            //在界面初始显示之后回调
+            mounted() {
+                this.timer = setInterval(() => {
+                    console.log("mounted",this.$refs.title);
+                    this.isShow = !this.isShow;
+                }, 500)
+            },
+             //做一些初始化操作，不能根据this读取任何data中的数据，
+            // 也不能调用methods中的方法。
+            beforeCreate(){
+                console.log("beforeCreate");
+            },
+           //做一些初始化操作
+            created(){
+                console.log("created");
+            },
+            //编译模板
+            //不能通过ref得到dom对象
+            beforeMount(){
+                console.log("beforeMount",this.$refs.title);
+            },
+            // 在界面更新前调用 ==》看到的是旧的界面
+            beforeUpdate(){
+                console.log("beforeUpdate");
+            },
+            // 在界面更新后调用 ==》看到的是新的界面
+            Update(){
+                console.log("Update");
+            },
+            destroy(){
+                console.log("destroy");
+            },
+            //在死亡之前执行 ==》 做一些收尾工作：清除定时器等
+            beforeDestroy(){
+                console.log("beforeDestroy");
+                clearInterval(this.timer)
+            }
+
+        })
+    </script>
+</body>
+
+</html>

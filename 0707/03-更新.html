@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <p>a.b : {{a.b}}</p>
+         <p>a.c : {{a.c}}</p>
+         <button @click="update()">更新</button>
+     </div>
+     <script>
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 a:{
+                     b:123
+                 }
+             },
+             methods:{
+                update(){
+                    //给响应式对象直接添加一个新属性 ==》 界面不会更新
+                    //this.a.c = 'abc'
+                    if(!this.a.hasOwnProperty('c')){
+                        this.$set(this.a,'c','abc')
+                    }else{
+                        this.a.c=this.a.c+'----'
+                    }
+                }
+             }
+         })
+     </script>
+</body>
+</html>

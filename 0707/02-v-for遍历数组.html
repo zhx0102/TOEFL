@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <h1>测试：v-for遍历数组</h1>
+         <ul>
+             <li v-for="(item,index) in msg":key="item.id">
+                 {{item.id}}--{{item.name}}--{{item.age}}
+                 --<button @click="deleteP(index)">删除</button>
+                 --<button @click="upedate(index,newP)">更新</button>
+             </li>
+         </ul>
+         <h1>测试：v-for遍历对象</h1>
+         <ul v-for="(value,key) in msg[1]">
+             <li>{{key}} : {{value}}</li>
+             
+         </ul>
+     </div>
+     <script>
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 newP:{id:100,name:"老王",age:25},
+                 msg:[
+                     {id:0,name:"zhx",age:22},
+                     {id:1,name:"syh",age:22},
+                     {id:2,name:"Bob",age:22},
+                 ]
+             },
+             methods:{
+                 deleteP(index){
+                     return this.msg.splice(index,1);
+                 },
+                 upedate(index,newP){
+                     return this.msg.splice(index,1,newP);
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
