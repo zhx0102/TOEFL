@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <father :msg="msg" :movies="movies"></father>
+         <son @itemclick="show"></son>
+     </div>
+     <template id="npm1">
+         <div>
+             <h2>{{msg}}</h2>
+             <ul>
+                 <li v-for="item in movies" :key="item">{{item}}</li>
+             </ul>
+         </div>
+     </template>
+     <template id="npm2">
+        <div>
+            <button @click="btnClick(item)" v-for="item in title">{{item.name}}</button>
+        </div>
+    </template>
+     <script>
+         //父传子
+         Vue.component('father',{
+             props:{
+                 msg:{
+                     type:String,
+                     default:""
+                 },
+                 movies:{
+                     type:Array,
+                     default:[]
+                 }
+             },
+             data(){
+                 return{}
+             },
+             template:"#npm1"
+         })
+         //子传父
+         Vue.component('son',{
+             props:{},
+             data(){
+                 return{
+                     title:[
+                         {id:1,name:"母音用品"},
+                         {id:2,name:"电子产品"},
+                         {id:3,name:"家用电器"},
+                         {id:4,name:"数码摄像"},
+                     ]
+                 }
+             },
+             methods:{
+                btnClick(item){
+                    this.$emit("itemclick",item)
+                }
+             },
+             template:"#npm2"
+         })
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 msg:"你好哇，李银河",
+                 movies:["雷神","喜羊羊和灰太狼","熊出没","哆啦A梦"]
+             },
+             methods:{
+                 show(item){
+                     console.log(item.name);
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

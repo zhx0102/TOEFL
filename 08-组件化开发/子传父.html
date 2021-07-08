@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <son @itemclick="cpnClick"></son>
+    </div>
+    <template id="npm1"></template>
+    <template id="npm2">
+        <div>
+            <button @click="btnClick(item)" v-for="(item,index) in categories">{{item.name}}</button>
+        </div>
+    </template>
+    <script>
+        Vue.component('father', {
+            data() {
+                return {}
+            },
+            template: "#npm1"
+        })
+        Vue.component('son', {
+            data() {
+                return {
+                    categories: [{
+                            id: 'aaa',
+                            name: "热门推荐"
+                        },
+                        {
+                            id: 'bbb',
+                            name: "手机数码"
+                        },
+                        {
+                            id: 'ccc',
+                            name: "家用电器"
+                        },
+                        {
+                            id: 'ddd',
+                            name: "电脑办公"
+                        },
+                    ]
+                }
+            },
+            methods: {
+                btnClick(item) {
+                    //给父组件传点击了哪个
+                    this.$emit("itemclick",item);
+                }
+            },
+            template: "#npm2"
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {},
+            methods:{
+                cpnClick(item){
+                    console.log(item.name);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

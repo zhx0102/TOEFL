@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="../js/vue.js"></script>
+</head>
+<body>
+     <div id='app'>
+         <father :msg="msg" :movies="movies"> </father>
+         <son @itemclick="showData"></son>
+     </div>
+     <template id="cmp1">
+         <div>
+             <ul>
+                 <li v-for="(item,index) in movies">{{item}}</li>
+             </ul>
+             <h2>{{msg}}</h2>
+         </div>
+     </template>
+     <template id="cmp2">
+         <div>
+             <button @click="btnClick(item)" v-for="item in news">{{item.name}}</button>
+         </div>
+     </template>
+     <script>
+         //父传子
+         Vue.component("father",{
+             props:{
+                 msg:{
+                     type:String,
+                     default:""
+                 },
+                 movies:{
+                     type:Array,
+                     default:[]
+                 }
+             },
+             data(){
+                 return {}
+             },
+             template:"#cmp1"
+         })
+         //子传父
+         Vue.component("son",{
+             data(){
+                 return {
+                     news:[
+                         {id:1,name:"家用电器"},
+                         {id:2,name:"母婴用品"},
+                         {id:3,name:"幼儿早教"},
+                         {id:4,name:"数码产品"},
+                         {id:5,name:"电子产品"},
+                     ]
+                 }
+             },
+             methods:{
+                btnClick(item){
+                    this.$emit("itemclick",item)
+                }
+             },
+             template:"#cmp2"
+         })
+         const app = new Vue({
+             el:'#app',
+             data:{
+                 msg:"你好哇，李银河！",
+                 movies:['喜羊羊与灰太狼','雷神3',"复仇者联盟"],
+             },
+             methods:{
+                 showData(item){
+                     console.log(item.name);
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
