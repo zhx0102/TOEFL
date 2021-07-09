@@ -1,43 +1,44 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isSelectAll"/>
+      <input type="checkbox" v-model="selectAllBtn" />
     </label>
-    <span> <span>已完成{{completedSlecte}}</span> / 全部{{todos.length}} </span>
-    <button class="btn btn-danger" v-show="completedSlecte" @click="clearCompletedTodos">清除已完成任务</button>
+    <span> <span>已完成{{isSelectNum}}</span> / 全部{{todos.length}} </span>
+    <button class="btn btn-danger" @click="clearSelect">清除已完成任务</button>
   </div>
 </template>
-
 <script>
 export default {
   name: "Footer",
   props:{
-    todos:Array,
-    selectAll:Function,
-    clearCompletedTodos:Function
-  },
-  data(){
-    return{
-      
-    }
+      todos:Array,
+      //选中的todo的个数
+      isSelectNum:Number,
+      //全选的函数
+      isSelectAll:Function,
+      //清楚已完成的
+      clearSelectAll:Function
   },
   computed:{
-    completedSlecte(){
-      return this.todos.reduce((pre,todo)=>pre+(todo.completed?1:0),0)
-    },
-    isSelectAll:{
-      get(){
-        return this.completedSlecte===this.todos.length;
-      },
-      set(value){
-        this.selectAll(value)
+       selectAllBtn:{
+          get(){
+              return this.isSelectNum===this.todos.length;
+          },
+          set(value){
+              this.isSelectAll(value);
+          }
       }
-    }
+  },
+  methods:{
+     clearSelect(){
+      //  console.log(111111111);
+       this.clearSelectAll();
+     }
   }
 };
 </script>
-
 <style scoped>
+/*footer*/
 .todo-footer {
   height: 40px;
   line-height: 40px;

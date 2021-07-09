@@ -1,43 +1,42 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认" 
-    v-model="title" @keyup.enter="handleEnter(index)"/>
+    <input type="text" v-model="title" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="handerEnter"/>
   </div>
 </template>
-
 <script>
 export default {
   name: "Header",
   props:{
-    addTodo:Function,
-    index:Number
+      //声明传递
+      //接收到父组件App传过来的todos
+      todos:Array,
+      addTodo:Function
   },
   data(){
-    return{
-      title:''
-    }
+      return{
+          //既然要生成新的todo，就在这里定义一个变量
+          title:""
+      }
   },
   methods:{
-    // 根据输入的title创建todo
-    handleEnter(){
-      const title=this.title.trim().replace(/\s/g,"");
-      if(!title){
+      handerEnter(){
+        // 优化一下，不让空格进去
+        const title = this.title.trim();
+        //为空的时候也不允许添加
+        if(!title){
+            this.title="";
+            return;
+        }
+        //   console.log(this.title);
+        this.addTodo(this.title);
+        //添加完一个以后把输入框清空
         this.title="";
-        return;
       }
-      const todo={
-        title,
-        completed:false
-      }
-      // 向todos中添加一个todo
-      this.addTodo(todo);
-      this.title="";
-    }
   }
 };
 </script>
-
 <style scoped>
+/*header*/
 .todo-header input {
   width: 560px;
   height: 28px;
@@ -50,8 +49,6 @@ export default {
 .todo-header input:focus {
   outline: none;
   border-color: rgba(82, 168, 236, 0.8);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
-
 </style>

@@ -2,55 +2,82 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <Header :addTodo="addTodo"/>
-        <List :todos="todos" :deleteTodo="deleteTodo"/>
-        <Footer :todos="todos" :selectAll="selectAll" :clearCompletedTodos="clearCompletedTodos"/>
+        <!-- 因为要通过header中的input输入框添加todo，因此给header传递todos -->
+        <Header :todos="todos" :addTodo="addTodo" />
+        <!-- 传递todos用于展示 -->
+        <List :todos="todos" :deleteTodo="deleteTodo" :isSelect="isSelect" />
+        <Footer :isSelectNum="isSelectNum" :todos="todos"
+        :isSelectAll="isSelectAll" :clearSelectAll="clearSelectAll"/>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import Header from "./components/Header.vue";
 import List from "./components/List.vue";
 import Footer from "./components/Footer.vue";
 export default {
   name: "App",
-  methods:{
-    addTodo(todo){
-      todo.key=Date.now();
-      this.todos.unshift(todo)
+  data() {
+    return {
+      //定义list里面的数据,select：是否被选中
+      //这个数据需要传递给list展示出来，因此用props来传递（父传子）
+      todos: [
+        { id: 1, title: "A", select: true },
+        { id: 2, title: "B", select: false },
+        { id: 3, title: "C", select: false },
+        { id: 4, title: "D", select: false },
+      ],
+    };
+  },
+  computed: {
+    //计算选中的有多少个
+    isSelectNum() {
+      return this.todos.reduce((pre, todo) => {
+        return pre + (todo.select ? 1 : 0);
+      }, 0);
     },
-    deleteTodo(index){
-      this.todos.splice(index,1);
+  },
+  methods: {
+    //定义添加todo的函数，并且传给header，用于子组件给父组件传值
+    addTodo(title) {
+      // console.log(title);
+      // 收到数据以后，首先定义一个新的对象用于存储
+      const newTodo = { id: Date.now(), title: title, select: false };
+      this.todos.unshift(newTodo);
     },
-    selectAll(isCheck){
-      this.todos.forEach(todo=>todo.completed=isCheck);
+    deleteTodo(index) {
+      this.todos.splice(index, 1);
     },
-    // 消除已完成的
-    clearCompletedTodos (){
-      this.todos=this.todos.filter(todo=>!todo.completed);
-    }
+    //动态修改todo的select的值
+    isSelect(todo) {
+      // console.log(todo.select);
+      todo.select = !todo.select;
+    },
+    //全选
+    isSelectAll(isCheck) {
+      // console.log(isCheck);
+      this.todos.forEach((item) => {
+        item.select = isCheck;
+        console.log(item.select);
+      });
+    },
+    clearSelectAll() {
+      //清除已完成
+      //过滤已完成的
+      this.todos = this.todos.filter((p) => {
+        return !p.select;
+      });
+    },
   },
   components: {
     Header,
     List,
     Footer,
-  },
-  data(){
-    return {
-      todos:[
-        {id:1,title:"A",completed:false},
-        {id:2,title:"B",completed:false},
-        {id:3,title:"C",completed:false},
-        {id:4,title:"D",completed:false},
-      ]
-    }
   }
 };
 </script>
-
-<style>
+<style scoped>
 .todo-container {
   width: 600px;
   margin: 0 auto;
