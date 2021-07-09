@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <inpudata :number1="num1" :number2="num2"></inpudata>
+    </div>
+    <template id="npm">
+        <div>
+            <h1>{{mynumber1}}</h1>
+            <input type="text" v-model="mynumber1">
+            <h1>{{mynumber2}}</h1>
+            <input type="text" v-model="mynumber2">
+        </div>
+    </template>
+    <script>
+        Vue.component("inpudata", {
+            props: {
+                number1: {
+                    type: String
+                },
+                number2: {
+                    type: String
+                }
+            },
+            data() {
+                return {
+                    mynumber1: this.number1,
+                    mynumber2: this.number2,
+                }
+            },
+            template: "#npm"
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: "1",
+                num2: "2"
+            }
+        })
+    </script>
+</body>
+
+</html>
