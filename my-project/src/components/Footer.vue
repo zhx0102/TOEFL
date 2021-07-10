@@ -22,7 +22,7 @@ export default {
   computed:{
        selectAllBtn:{
           get(){
-              return this.isSelectNum===this.todos.length;
+              return this.isSelectNum===this.todos.length && this.isSelectNum>0;
           },
           set(value){
               this.isSelectAll(value);
