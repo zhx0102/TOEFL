@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/zhx0102/TOEFL/issues"
   },
-  "homepage": "https://github.com/zhx0102/TOEFL#readme"
+  "homepage": "https://github.com/zhx0102/TOEFL#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }

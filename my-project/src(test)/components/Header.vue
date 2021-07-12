@@ -36,7 +36,7 @@ export default {
 
 
         // 2.
-        this.$emit('addTodo',this.title)
+        this.$emit('addTodo',this.title);
 
         // //   console.log(this.title);
         // this.addTodo(this.title);
