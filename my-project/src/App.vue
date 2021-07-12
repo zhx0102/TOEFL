@@ -1,20 +1,20 @@
 <template>
-  <div class="container">
-    <Search />
-    <Main />
-  </div>
+<div>
+    <router-link to="/home" tag="button" replace active-class="active"> 首页</router-link>
+    <router-link to="/about" replace active-class="active">关于</router-link>
+    <router-view></router-view>
+</div>
 </template>
 <script>
-import Search from "./components/Search.vue";
-import Main from "./components/Main.vue";
 export default {
-  name: "App",
-  components: {
-    Search,
-    Main,
-  },
-};
+    name:"App"
+}
 </script>
-<style scoped>
-
+<style  scoped>
+/* .router-link-active{
+    color:blueviolet
+} */
+.active{
+    color:blueviolet
+}
 </style>
