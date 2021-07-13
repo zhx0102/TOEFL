@@ -1,20 +1,34 @@
 <template>
-<div>
-    <router-link to="/home" tag="button" replace active-class="active"> 首页</router-link>
-    <router-link to="/about" replace active-class="active">关于</router-link>
-    <router-view></router-view>
-</div>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>React Router Demo</h2></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <div class="list-group">
+            <router-link to="/about" active-class="myActiveLink" class="list-group-item "
+              >About</router-link
+            >
+            <router-link to="/home" class="list-group-item">Home</router-link>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="panel">
+            <div class="panel-body">
+              <router-view></router-view>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 export default {
-    name:"App"
-}
+  name: "App",
+};
 </script>
-<style  scoped>
-/* .router-link-active{
-    color:blueviolet
-} */
-.active{
-    color:blueviolet
-}
-</style>
+<style scoped></style>
