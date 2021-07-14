@@ -1,30 +1,48 @@
 <template>
 <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header"><h2>React Router Demo</h2></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <router-link to="/about" class="list-group-item">About</router-link>
-          <router-link to="/home" class="list-group-item">Home</router-link>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <router-view></router-view>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <h1>count:{{count}},count is {{eventOrOdd}}</h1>
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+    <button @click="addIsOdd">is Odd add</button>
+    <button @click="addAsync">add async</button>
+</div>
 </template>
 <script>
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 export default {
-    name:"App"
+    name:"App",
+    computed:{
+        // count(){
+        //     return this.$store.state.count;
+        // },
+        // eventOrOdd(){
+        //     return this.$store.getters.eventOrOdd;
+        // }
+    ...mapState({
+        count:'count'
+    }),
+    ...mapGetters(['eventOrOdd'])
+
+    },
+    methods:{
+        // add(){
+        //     this.$store.commit("add")
+        // },
+        // sub(){
+        //     this.$store.commit("sub")
+        // },
+        // addIsOdd(){
+        //     this.$store.dispatch("addIsOdd")
+        // },
+        // addAsync(){
+        //     this.$store.dispatch("addAsync")
+        // }
+        ...mapMutations({
+            add:"add",
+            sub:"aub"
+        }),
+        ...mapActions(['addIsOdd','addAsync'])
+    }
 }
 </script>
 <style  scoped>

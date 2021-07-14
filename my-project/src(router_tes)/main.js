@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store'
+import router from './routes'
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  store,//所有组件都可以通过store得到store对象
+  router//注册路由器
 }).$mount('#app')
