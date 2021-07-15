@@ -1,11 +1,11 @@
-export default{
-    allCheck(state){
-        const arr  = state.todos.reduce((pre,todo)=>{
-            return pre+=todo.select?1:0;
-        },0)
-        return arr;
+export default {
+    selectAllLength(state) {
+        const len = state.todos.reduce((pre, item) => {
+            return pre += item.select ? 1 : 0;
+        }, 0);
+        return len;
     },
-    allSelect(state,getters){
-        return state.todos.length === getters.allCheck && getters.allCheck>0
+    isAllChecked(state,getters){
+        return state.todos.length===getters.selectAllLength && getters.selectAllLength>0;
     }
 }

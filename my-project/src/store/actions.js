@@ -1,16 +1,14 @@
 export default{
-    handelEnter({commit,state},title){
+    addTodo({commit,state},title){
         if(!title.trim()){
             return;
         }
-        commit("addTodo",title.trim());
+        state.todo={id:Date.now(),title:title.trim(),select:false}
+        commit("addTodo")
     },
-    
-    confirmDelete ({commit,state},index) {
-        if (confirm(`确定要删除吗?`)) {
-            commit('deleteTodo', index)
+    deleteTodo({commit,state},index){
+        if(confirm('你确定删除吗？')){
+            commit('deleteTodo',index)
         }
     },
-    
-    
 }

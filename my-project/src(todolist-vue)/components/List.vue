@@ -6,14 +6,14 @@
 <script>
 import Item from './Item'
 import {mapState} from 'vuex'
+
 export default {
   name: "List",
   computed:{
-      ...mapState(['todos'])
-
+    ...mapState(['todos'])
   },
   components:{
-      Item,
+      Item
   }
 };
 </script>

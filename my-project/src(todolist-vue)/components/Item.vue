@@ -1,38 +1,39 @@
 <template>
-  <li @mouseenter="handelEnter(true)" @mouseleave="handelEnter(false)" :style="{background:bgColor}">
+  <li @mouseenter="btnShow(true)" @mouseleave="btnShow(false)" :style="{background:bgColor}">
     <label>
       <input type="checkbox" v-model="isCheck"/>
-      <span>{{item.title}}</span>
+      <span>{{ item.title }}</span>
     </label>
     <button @click="deleteTodo(index)" class="btn btn-danger" v-show="isShow">删除</button>
   </li>
 </template>
 <script>
-import {mapGetters} from 'vuex'
+import { mapState } from "vuex";
 export default {
   name: "Item",
-  computed:{
+  data() {
+    return {
+      isShow: false,
+      bgColor: "#fff",
+    };
+  },
+  props: {
+    item: Object,
+    index: Number,
+  },
+  computed: {
     isCheck:{
       get(){
         return this.item.select;
+        
       },set(value){
-        this.$store.commit('isCheck',this.item)
+        this.totalSelect(this.item);
       }
-    },
-  },
-  data(){
-    return{
-      bgColor:"#fff",
-      isShow:false
     }
   },
-  props:{
-    item:Object,
-    index:Number
-  },
-  methods:{
-    handelEnter(flag){
-      if(flag){
+  methods: {
+    btnShow(flag) {
+      if (flag) {
         this.bgColor="#eee",
         this.isShow=true
       }else{
@@ -41,9 +42,12 @@ export default {
       }
     },
     deleteTodo(index){
-      this.$store.dispatch('deleteTodo',index)
+      this.$store.dispatch('confirmDelete',index);
+    },
+    totalSelect(item){
+      this.$store.commit('totalSelect',item);
     }
-  }
+  },
 };
 </script>
 <style scoped>
@@ -80,5 +84,4 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
-
 </style>

@@ -3,7 +3,8 @@ export default{
     todos:[
         {id:1,title:"吃饭",select:false},
         {id:2,title:"睡觉",select:false},
-        {id:3,title:"敲代码",select:false},
+        {id:3,title:"打代码",select:false},
     ],
-    todo:{}
+    
+
 }

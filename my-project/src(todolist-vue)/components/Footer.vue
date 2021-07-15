@@ -1,32 +1,38 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isAllCheck"/>
+      <input type="checkbox" v-model="isAllSelect" />
     </label>
-    <span> <span>已完成{{selectAllLength}}</span> / 全部{{todos.length }}</span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <span>
+      <span>已完成{{ allCheck }}</span> / 全部{{ todos.length }}
+    </span>
+    <button @click="deleteSelectAll" class="btn btn-danger">清除已完成任务</button>
   </div>
 </template>
 <script>
-import {mapGetters,mapState} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 export default {
   name: "Footer",
   computed:{
-    ...mapGetters(['selectAllLength','isAllChecked']),
     ...mapState(['todos']),
-    isAllCheck:{
+    ...mapGetters(['allCheck','allSelect']),
+    isAllSelect:{
       get(){
-        return this.isAllChecked;
+        return this.allSelect
       },
       set(value){
-        this.$store.commit('AllSelect');
+        this.$store.commit('selectAll',value)
       }
+    }
+  },
+  methods:{
+    deleteSelectAll(){
+      this.$store.commit('deleteSelectAll');
     }
   }
 };
 </script>
 <style scoped>
-
 /*footer*/
 .todo-footer {
   height: 40px;

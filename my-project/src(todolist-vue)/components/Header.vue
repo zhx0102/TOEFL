@@ -1,6 +1,6 @@
 <template>
   <div class="todo-header">
-    <input type="text" v-model="title" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="addTodo"/>
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="handleEnter" v-model="title"/>
   </div>
 </template>
 <script>
@@ -8,18 +8,18 @@ import {mapState} from 'vuex'
 export default {
   name: "Header",
   data(){
-    return{
-      title:""
-    }
+      return{
+          title:""
+      }
   },
   computed:{
     ...mapState(["todos","todo"])  
   },
   methods:{
       //添加信息效果
-      addTodo(title){
-          this.$store.dispatch("addTodo",this.title);
-          this.title=""
+      handleEnter(){
+          this.$store.dispatch("handelEnter",this.title);
+          this.title="";
       }
   }
 };
