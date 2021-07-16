@@ -1,36 +1,32 @@
 <template>
-<div class="todo-container">
-    <div class="todo-wrap">
-      <Header/>
-      <List/>
-      <Footer/>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header">
+          <h2>React Router Demo</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import Header from './components/Header'
-import List from './components/List'
-import Footer from './components/Footer'
 export default {
-    name:"App",
-    components:{
-        Header,
-        List,
-        Footer
-    }
-}
+  name: "App",
+};
 </script>
-<style  scoped>
-
-/*app*/
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-</style>
+<style scoped></style>
