@@ -2,14 +2,16 @@
   <div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header"><h2>React Router Demo</h2></div>
+        <div class="page-header">
+          <h2>React Router Demo</h2>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-2 col-xs-offset-2">
         <div class="list-group">
-            <router-link class="list-group-item" to="/about">About</router-link>
-            <router-link class="list-group-item" to="/home">Home</router-link>
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
         </div>
       </div>
       <div class="col-xs-6">
@@ -24,8 +26,7 @@
 </template>
 <script>
 export default {
-    name:"App"
-}
+  name: "App",
+};
 </script>
-<style  scoped>
-</style>
+<style scoped></style>

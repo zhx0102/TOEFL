@@ -7,13 +7,12 @@
 </template>
 <script>
 const msgAll = [
-  { id: 1, title: "hello0001", content: "world 000001" },
-  { id: 2, title: "hello0002", content: "world 000002" },
-  { id: 3, title: "hello0003", content: "world 000003" },
-  { id: 4, title: "hello0004", content: "world 000004" },
+  { id: 1, title: "Message00001", content: "Message Content001" },
+  { id: 2, title: "Message00003", content: "Message Content003" },
+  { id: 3, title: "Message00005", content: "Message Content005" },
 ];
 export default {
-  name: "MsgItem",
+  name: "msgItem",
   props: ["id", "name", "title"],
   data() {
     return {
@@ -21,12 +20,12 @@ export default {
     };
   },
   mounted() {
-    this.updateUI(this.$route);
+      this.updateUI(this.$route)
   },
-  watch: {
-    $route: function(value) {
-      this.updateUI(value);
-    },
+  watch:{
+      $route:function(value){
+          this.updateUI(value);
+      }
   },
   methods: {
     updateUI(route) {
